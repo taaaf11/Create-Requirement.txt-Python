@@ -66,7 +66,6 @@ def verify_imports(file) -> list:
                 continue
         # iterating through <the names used to import> and <the distribution names>
         for import_name, dist_name in output:
-            # if name is present in the standard library
             if _import in import_name:
                 requirements.append(dist_name[0] + "=" + version(dist_name[0]))
     return sorted(requirements)
@@ -75,7 +74,7 @@ def verify_imports(file) -> list:
 def create_file():
     print("Creating file... ")
     with open("requirements.txt", "w") as f:
-        # get file name from command line argument and pass it to get_imports function
+        # get file name from command line argument and pass it to verify_imports function
         for _import in verify_imports(cmd[1]):
             # write to file
             f.write(_import + "\n")
